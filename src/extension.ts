@@ -12,6 +12,13 @@ export function activate(this: any, context: vscode.ExtensionContext) {
     // vscode.window.showInformationMessage('没有文件夹，请先打开一个文件夹')
     return
   }
+  const language = vscode.env.language
+  if (language === 'zh-cn' || language === 'zh-tw') {
+    // 用户使用的是中文
+    vscode.window.showInformationMessage('用户使用的是中文')
+  } else {
+    vscode.window.showInformationMessage('用户使用的是其他语言')
+  }
   ;(async () => {
     const packageJsonPathList = await findFilesFromWorkspace('package.json', 1)
     if (!packageJsonPathList.length) return // 如果没有package.json文件，直接返回

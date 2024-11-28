@@ -50,6 +50,16 @@
           "default": true,
           "description": "是否显示鼠标悬浮提示"
         },
+        "vue-supercharger.displayLanguage": {
+          "type": "string",
+          "enum": [
+            "zh",
+            "en",
+            "auto"
+          ],
+          "default": "auto",
+          "description": "插件提示的语言"
+        },
         "vue-supercharger.ignoreVueVersionMismatch": {
           "type": "boolean",
           "default": false,
