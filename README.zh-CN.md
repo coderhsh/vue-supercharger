@@ -1,6 +1,6 @@
 # ⚡ Vue Supercharger
 
-Language: **中文** | [English](https://gitee.com/huang-shanhuo/vue-supercharger/blob/master/README.md)
+Language: **中文** | [English](README.md)
 
 自动检测当前工作区 Vue 版本，为 Vue 2 与 Vue 3 项目智能匹配功能及精准注入代码片段，提升开发效率，优化开发体验
 

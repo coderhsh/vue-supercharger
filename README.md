@@ -1,6 +1,6 @@
 # ⚡ Vue Supercharger
 
-Language: **English** | [中文](https://gitee.com/huang-shanhuo/vue-supercharger/blob/master/README.zh-CN.md)
+Language: **English** | [中文](README.zh-CN.md)
 
 Vue Supercharger is an extension designed to enhance Vue development by improving efficiency and the overall development experience. It automatically detects the Vue version in your workspace and provides corresponding features and snippets for Vue 2 or Vue 3 projects. The extension intelligently adapts to your project's needs, offering the most suitable functionality for your development workflow.
 
