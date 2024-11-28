@@ -1,0 +1,181 @@
+{
+  "this": {
+    "prefix": "th",
+    "scope": "vue",
+    "body": [
+      "this."
+    ]
+  },
+  "beforeCreate": {
+    "prefix": "beforeCreate",
+    "scope": "vue",
+    "body": [
+      "beforeCreate(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "created": {
+    "prefix": "created",
+    "scope": "vue",
+    "body": [
+      "created(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "beforeMount": {
+    "prefix": "beforeMount",
+    "scope": "vue",
+    "body": [
+      "beforeMount(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "mounted": {
+    "prefix": "mounted",
+    "scope": "vue",
+    "body": [
+      "mounted(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "beforeUpdate": {
+    "prefix": "beforeUpdate",
+    "scope": "vue",
+    "body": [
+      "beforeUpdate(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "updated": {
+    "prefix": "updated",
+    "scope": "vue",
+    "body": [
+      "updated(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "beforeDestroy": {
+    "prefix": "beforeDestroy",
+    "scope": "vue",
+    "body": [
+      "beforeDestroy(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "destroyed": {
+    "prefix": "destroyed",
+    "scope": "vue",
+    "body": [
+      "destroyed(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "activated": {
+    "prefix": "activated",
+    "scope": "vue",
+    "body": [
+      "activated(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "deactivated": {
+    "prefix": "deactivated",
+    "scope": "vue",
+    "body": [
+      "deactivated(){",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "props": {
+    "prefix": "props",
+    "scope": "vue",
+    "body": [
+      "props:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "computed": {
+    "prefix": "computed",
+    "scope": "vue",
+    "body": [
+      "computed:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "components": {
+    "prefix": "components",
+    "scope": "vue",
+    "body": [
+      "components:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "watch": {
+    "prefix": "watch",
+    "scope": "vue",
+    "body": [
+      "watch:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "filters": {
+    "prefix": "filters",
+    "scope": "vue",
+    "body": [
+      "filters:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "directives": {
+    "prefix": "directives",
+    "scope": "vue",
+    "body": [
+      "directives:{",
+      "\t\t$1",
+      "\t}"
+    ]
+  },
+  "Vue2Component": {
+    "prefix": "vue",
+    "description": "Vue 2 component",
+    "scope": "vue",
+    "body": [
+      "<template>",
+      "  <div>${1:Component}</div>",
+      "</template>",
+      "",
+      "<script>",
+      "export default {",
+      "  name: '${2:Component}',",
+      "  data() {",
+      "    return {",
+      "      ${3:data}: ''",
+      "    }",
+      "  },",
+      "  methods: {",
+      "    ${4:methodName}() {",
+      "    }",
+      "  }",
+      "}",
+      "</script>",
+      "",
+      "<style scoped lang=\"${5|less,scss|}\">",
+      "</style>"
+    ]
+  }
+}

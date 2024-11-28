@@ -1,0 +1,192 @@
+{
+  "创建ref": {
+    "prefix": "cr",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "const ${1:foo} = ref($2)"
+    ]
+  },
+  "创建ref变量": {
+    "prefix": "ref",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "const ${1:foo} = ref($2)"
+    ]
+  },
+  "创建ref对象": {
+    "prefix": "cro",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "const ${1:foo} = ref({",
+      "$2",
+      "})"
+    ]
+  },
+  "创建ref数组": {
+    "prefix": "cra",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "const ${1:foo} = ref([$2])"
+    ]
+  },
+  "创建reactive变量": {
+    "prefix": "reactive",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "const ${1:foo} = reactive($2)"
+    ]
+  },
+  "Vue3Component": {
+    "prefix": "vue",
+    "description": "Vue 3 component",
+    "scope": "vue",
+    "body": [
+      "<template>",
+      "  <div>${1:$TM_FILENAME_BASE}</div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "$2",
+      "</script>",
+      "",
+      "<style scoped lang=\"${3|less,scss|}\">",
+      "</style>"
+    ]
+  },
+  "v-for": {
+    "prefix": "vFor",
+    "scope": "vue",
+    "body": [
+      "v-for=\"(${2:item}, ${3:index}) in ${1:items}\" :key=\"${4:index}\""
+    ]
+  },
+  "setup": {
+    "prefix": "setup",
+    "scope": "vue",
+    "body": [
+      "setup(${0:props}){",
+      "$1",
+      "}"
+    ]
+  },
+  "onBeforeMount": {
+    "prefix": "onBeforeMount",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onBeforeMount(() => {$1})"
+    ]
+  },
+  "onMounted": {
+    "prefix": "onMounted",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onMounted(() => {$1})"
+    ]
+  },
+  "onBeforeUpdate": {
+    "prefix": "onBeforeUpdate",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onBeforeUpdate(() => {$1})"
+    ]
+  },
+  "onUpdated": {
+    "prefix": "onUpdated",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onUpdated(() => {$1})"
+    ]
+  },
+  "onBeforeUnmount": {
+    "prefix": "onBeforeUnmount",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onBeforeUnmount(() => {$1})"
+    ]
+  },
+  "onUnmounted": {
+    "prefix": "onUnmounted",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onUnmounted(() => {$1})"
+    ]
+  },
+  "onActivated": {
+    "prefix": "onActivated",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onUnmounted(() => {$1})"
+    ]
+  },
+  "onDeactivated": {
+    "prefix": "onDeactivated",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "onDeactivated(() => {$1})"
+    ]
+  },
+  "computed": {
+    "prefix": "comp",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "$2computed(() => {$1})"
+    ]
+  },
+  "watch": {
+    "prefix": "watch",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "watch(${1:foo}, (${2:newVal}, ${3:oldVal}) => {",
+      "\t$4",
+      "\t})"
+    ]
+  },
+  "watchEffect": {
+    "prefix": "watchEffect",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "watchEffect(() => {$1})"
+    ]
+  },
+  "defineExpose": {
+    "prefix": "defineExpose",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "defineExpose({",
+      "\t\t$1",
+      "\t})"
+    ]
+  },
+  "defineOptions": {
+    "prefix": "defineOptions",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "defineOptions({",
+      "\t\t$1",
+      "\t})"
+    ]
+  },
+  "defineProps": {
+    "prefix": "defineProps",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "defineProps({",
+      "\t\t${1:foo}:${2:String}",
+      "\t})"
+    ]
+  },
+  "defineEmits": {
+    "prefix": "defineEmits",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "defineEmits(['$1'])"
+    ]
+  },
+  "provide": {
+    "prefix": "provide",
+    "scope": "typescript,javascript,vue",
+    "body": [
+      "provide(${1:'key'},${2:value})"
+    ]
+  }
+}

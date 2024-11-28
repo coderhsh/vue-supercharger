@@ -1,0 +1,105 @@
+{
+  "name": "vue-supercharger",
+  "displayName": "Vue Supercharger",
+  "publisher": "coderhsh",
+  "description": "support for Vue",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/huang-shanhuo/vue-supercharger"
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "icon": "assets/logo.jpeg",
+  "categories": [
+    "Snippets",
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Vue Supercharger",
+      "properties": {
+        "vue-supercharger.vueSelection": {
+          "order": 0,
+          "type": "string",
+          "enum": [
+            "vue2",
+            "vue3",
+            "both",
+            "auto",
+            "none"
+          ],
+          "markdownEnumDescriptions": [
+            "选择 **Vue 2** 作为代码片段的支持版本。",
+            "选择 **Vue 3** 作为代码片段的支持版本。",
+            "同时启用 **Vue 2 和 Vue 3** 的代码片段支持。",
+            "自动检测当前项目使用的 Vue 版本，检测顺序为：`package.json` 中的vue版本 -> 手动选择。",
+            "禁用所有 Vue 代码片段支持。"
+          ],
+          "default": "auto",
+          "description": "选择要启用的Vue代码片段"
+        },
+        "vue-supercharger.isShowHoverTips": {
+          "order": 1,
+          "type": "boolean",
+          "default": true,
+          "description": "是否显示鼠标悬浮提示"
+        },
+        "vue-supercharger.ignoreVueVersionMismatch": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否忽略vue版本不一致的提示"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [],
+      "explorer/context": []
+    },
+    "snippets": [],
+    "commands": [
+      {
+        "command": "vue-supercharger.selectVueVersion",
+        "title": "选择Vue版本"
+      }
+    ]
+  },
+  "files": [
+    "out",
+    "snippets",
+    "snippetFiles",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "vue",
+    "vue2",
+    "vue3",
+    "vuejs",
+    "vue.js",
+    "composition-api",
+    "composition",
+    "html",
+    "javascript",
+    "snippet"
+  ],
+  "scripts": {
+    "build": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
