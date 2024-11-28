@@ -15,10 +15,7 @@ const { vueSelectionConfigName } = config
 export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
   // 获取当前工作区的根路径
   const workspaceFolder = workspace.workspaceFolders?.[0]?.uri.fsPath
-  if (!workspaceFolder) {
-    window.showErrorMessage('无法获取工作区的根目录')
-    return
-  }
+  if (!workspaceFolder) return
   // 构建 package.json 的路径
   const packageJsonPath = join(workspaceFolder, 'package.json')
   const packageJsonFile = readFileSync(packageJsonPath, 'utf-8')
