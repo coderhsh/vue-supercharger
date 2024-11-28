@@ -12,7 +12,7 @@
     "body": [
       "beforeCreate(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "created": {
@@ -21,7 +21,7 @@
     "body": [
       "created(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "beforeMount": {
@@ -30,7 +30,7 @@
     "body": [
       "beforeMount(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "mounted": {
@@ -39,7 +39,7 @@
     "body": [
       "mounted(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "beforeUpdate": {
@@ -48,7 +48,7 @@
     "body": [
       "beforeUpdate(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "updated": {
@@ -57,7 +57,7 @@
     "body": [
       "updated(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "beforeDestroy": {
@@ -66,7 +66,7 @@
     "body": [
       "beforeDestroy(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "destroyed": {
@@ -75,7 +75,7 @@
     "body": [
       "destroyed(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "activated": {
@@ -84,7 +84,7 @@
     "body": [
       "activated(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "deactivated": {
@@ -93,7 +93,16 @@
     "body": [
       "deactivated(){",
       "\t\t$1",
-      "\t}"
+      "\t},"
+    ]
+  },
+  "methods": {
+    "prefix": "methods",
+    "scope": "vue",
+    "body": [
+      "methods:{",
+      "\t\t$1",
+      "\t},"
     ]
   },
   "props": {
@@ -102,7 +111,7 @@
     "body": [
       "props:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "computed": {
@@ -111,7 +120,7 @@
     "body": [
       "computed:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "components": {
@@ -120,7 +129,7 @@
     "body": [
       "components:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "watch": {
@@ -129,7 +138,7 @@
     "body": [
       "watch:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "filters": {
@@ -138,7 +147,7 @@
     "body": [
       "filters:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "directives": {
@@ -147,7 +156,7 @@
     "body": [
       "directives:{",
       "\t\t$1",
-      "\t}"
+      "\t},"
     ]
   },
   "Vue2Component": {

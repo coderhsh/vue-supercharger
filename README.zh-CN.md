@@ -172,103 +172,110 @@ this.
 #### `beforeCreate`
 
 ```javascript
-  beforeCreate(){}
+  beforeCreate(){},
 ```
 
 #### `created`
 
 ```javascript
-  created(){}
+  created(){},
 ```
 
 #### `beforeMount`
 
 ```javascript
-  beforeMount(){}
+  beforeMount(){},
 ```
 
 #### `mounted`
 
 ```javascript
-  mounted(){}
+  mounted(){},
 ```
 
 #### `beforeUpdate`
 
 ```javascript
-  beforeUpdate(){}
+  beforeUpdate(){},
 ```
 
 #### `updated`
 
 ```javascript
-  updated(){}
+  updated(){},
 ```
 
 #### `beforeDestroy`
 
 ```javascript
-  beforeDestroy(){}
+  beforeDestroy(){},
 ```
 
 #### `destroyed`
 
 ```javascript
-  destroyed(){}
+  destroyed(){},
 ```
 
 #### `activated`
 
 ```javascript
-  activated(){}
+  activated(){},
 ```
 
 #### `deactivated`
 
 ```javascript
-  deactivated(){}
+  deactivated(){},
+```
+
+#### `methods`
+
+```javascript
+methods: {
+},
 ```
 
 #### `props`
 
 ```javascript
 props: {
-}
+},
 ```
 
 #### `computed`
 
 ```javascript
 computed: {
-}
+},
 ```
 
 #### `components`
 
 ```javascript
 components: {
-}
+},
 ```
 
 #### `watch`
 
 ```javascript
 watch: {
-}
+},
 ```
 
 #### `filters`
 
 ```javascript
 filters: {
-}
+},
 ```
 
 #### `directives`
 
 ```javascript
 directives: {
-}
+},
 ```
 
 #### `vue`
