@@ -89,7 +89,8 @@
     "snippet"
   ],
   "scripts": {
-    "build": "vsce package"
+    "build": "vsce package",
+    "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
     "@types/vscode": "^1.80.0",
