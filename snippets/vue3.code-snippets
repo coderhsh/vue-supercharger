@@ -45,11 +45,11 @@
       "  <div>${1:$TM_FILENAME_BASE}</div>",
       "</template>",
       "",
-      "<script setup lang=\"ts\">",
-      "$2",
+      "<script setup lang=\"${2|ts,js|}\">",
+      "$3",
       "</script>",
       "",
-      "<style scoped lang=\"${3|less,scss|}\">",
+      "<style scoped lang=\"${4|less,scss|}\">",
       "</style>"
     ]
   },
