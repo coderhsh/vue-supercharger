@@ -301,11 +301,11 @@ export default {
 
 </details>
 
-### 💡 Recommended editor settings:
+<!-- ### 💡 Recommended editor settings:
 
 ```
 "editor.snippetSuggestions": "top"
-```
+``` -->
 
 ## 📄 Usage
 

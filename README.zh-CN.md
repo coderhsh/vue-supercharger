@@ -301,11 +301,11 @@ export default {
 
 </details>
 
-### 💡 推荐编辑器设置:
+<!-- ### 💡 推荐编辑器设置:
 
 ```
 "editor.snippetSuggestions": "top"
-```
+``` -->
 
 ## 📄 使用说明书:
 
