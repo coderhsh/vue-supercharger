@@ -1,22 +1,3 @@
-1.国际化
-"contributes": {
-"localizations": [
-{
-"languageId": "zh-cn",
-"translations": [
-{
-"id": "vue-supercharger.vueSelection",
-"value": "选择要启用的 Vue 片段"
-}
-]
-}
-]
-}
-import { localize } from 'vscode-nls'; // 假设已安装 vscode-nls
-Supercharger
-const message = localize('vue-supercharger.vueSelection', '选择要启用的 Vue 片段');
-window.showInformationMessage(message);
-
 2.非法值检测
 workspace.onDidChangeConfiguration((e) => {
 if (e.affectsConfiguration('vue-supercharger')) {
