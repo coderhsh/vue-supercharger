@@ -7,12 +7,27 @@
   "engines": {
     "vscode": "^1.80.0"
   },
+  "keywords": [
+    "vue",
+    "vue2",
+    "vue3",
+    "vuejs",
+    "vue.js",
+    "composition-api",
+    "composition",
+    "html",
+    "javascript",
+    "snippet"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/coderhsh/vue-supercharger?tab=readme-ov-file"
+    "url": "https://github.com/coderhsh/vue-supercharger"
+  },
+  "bugs": {
+    "url": "https://github.com/coderhsh/vue-supercharger/issues"
   },
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "icon": "assets/logo.jpeg",
   "categories": [
@@ -76,31 +91,19 @@
     "package.json",
     "README.md"
   ],
-  "keywords": [
-    "vue",
-    "vue2",
-    "vue3",
-    "vuejs",
-    "vue.js",
-    "composition-api",
-    "composition",
-    "html",
-    "javascript",
-    "snippet"
-  ],
   "scripts": {
     "build": "vsce package",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
+    "@types/vscode": "^1.80.0",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
     "@typescript-eslint/parser": "^8.7.0",
-    "eslint": "^9.13.0",
-    "typescript": "^5.6.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.13.0",
+    "typescript": "^5.6.3"
   }
 }
