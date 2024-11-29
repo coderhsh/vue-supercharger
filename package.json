@@ -2,8 +2,8 @@
   "name": "vue-supercharger",
   "displayName": "Vue Supercharger",
   "publisher": "coderhsh",
-  "description": "support for Vue",
-  "version": "0.0.1",
+  "description": "development tool tailored for Vue developers",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.80.0"
   },
