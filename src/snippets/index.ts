@@ -7,7 +7,7 @@ import { extensionConfig } from '../config/index'
 import config, { snippetPaths } from './config'
 import { getVueVersionFromPackageJson, selectVueVersionToWorkspace, updateVueVersionInWorkspace, detectVueVersionMismatch, initializeStatusBar, updateStatusBar } from './utils'
 const { defaultHighlightsLanguage, vueSelectionConfigName } = config
-const { extensionId, extensionName } = extensionConfig
+const { extensionId, extensionName, extensionLanguage } = extensionConfig
 export default async function initSnippets(context: ExtensionContext) {
   initializeStatusBar() // 初始化状态栏
   detectVueVersionMismatch() // 检测用户的vue版本是否和package.json中的vue版本一致,如果不一致则提示用户修改vue版本
@@ -37,14 +37,24 @@ export async function getVueVersion(confirm = true) {
   if (!vueSelection) return vueSelection
   // 如果不需要确认弹窗则直接更新工作区配置
   if (!confirm) return updateVueVersionInWorkspace(vueSelection)
+  const { message, yes } = {
+    en: {
+      message: `is ${vueSelection} set to the current workspace vue version?`,
+      yes: 'yes',
+    },
+    zh: {
+      message: `是否设置${vueSelection}为当前工作区vue版本？`,
+      yes: '是',
+    },
+  }[extensionLanguage]
   // 更新到工作区设置
   const selection = await window.showInformationMessage(
-    `是否设置${vueSelection}为当前工作区vue版本？`, // 提示信息
+    message,
     { modal: true }, // 设置为模态对话框
-    '是'
+    yes
   )
   // 如果用户选择是，则更新到工作区设置
-  if (selection === '是') updateVueVersionInWorkspace(vueSelection)
+  if (selection === yes) updateVueVersionInWorkspace(vueSelection)
   return vueSelection
 }
 /**  从 JSON 文件中加载代码片段 */

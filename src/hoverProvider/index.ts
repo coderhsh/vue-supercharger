@@ -4,7 +4,6 @@ import { keyWordRecord, enabledLanguages } from './config'
 import { userConfig } from '../config/userConfig'
 import type { HoverProvider, TextDocument, Position, CancellationToken, ProviderResult, Hover as HoverType } from 'vscode'
 const keyWords = Object.keys(keyWordRecord)
-
 export default function initHoverProvider(context: ExtensionContext) {
   class MyHoverProvider implements HoverProvider {
     provideHover(document: TextDocument, position: Position, token: CancellationToken): ProviderResult<HoverType> {

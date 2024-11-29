@@ -5,9 +5,9 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import config from '../config'
 import { userConfig } from '../../config/userConfig'
-import { extensionConfig } from '../../config/index'
+import { extensionConfig, isEn } from '../../config/index'
 import { updateUserWorkspaceConfig } from '../../utils'
-const { extensionId } = extensionConfig
+const { extensionId, extensionLanguage } = extensionConfig
 const { vueSelectionConfigName } = config
 /**
  * 根据 package.json 中的 vue 版本来判断使用 vue2 还是 vue3
@@ -37,11 +37,11 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
       else if (majorVersion === 3) return 'vue3'
     }
     // 如果版本号不匹配 vue2 或 vue3
-    window.showWarningMessage('The Vue version used by the project is not Vue 2 or Vue 3(项目使用的 Vue 版本不是 Vue 2 或 Vue 3)')
+    window.showWarningMessage(isEn ? 'the Vue version used by the project is not Vue 2 or Vue 3' : '项目使用的 Vue 版本不是 Vue 2 或 Vue 3')
     return
   } catch (error: any) {
     // 捕获读取和解析错误
-    window.showErrorMessage(`Unable to parse(无法解析) package.json: ${error.message}`)
+    window.showErrorMessage(isEn ? `unable to parse package.json: ${error.message}` : `无法解析 package.json: ${error.message}`)
     return
   }
 }
@@ -54,27 +54,27 @@ export async function selectVueVersionToWorkspace(ignoreFocusOut = true): Promis
   const options = [
     {
       label: 'Vue2',
-      description: 'For Vue 2.x projects(适用于 Vue 2.x 项目)',
+      description: isEn ? `for Vue 2.x projects` : `适用于 Vue 2.x 项目`,
       value: 'vue2',
     },
     {
       label: 'Vue3',
-      description: 'For Vue 3.x projects(适用于 Vue 3.x 项目)',
+      description: isEn ? `for Vue 3.x projects` : `适用于 Vue 3.x 项目`,
       value: 'vue3',
     },
     {
       label: 'Both',
-      description: 'Support for mixed Vue 2 and Vue 3 projects(支持 Vue 2 和 Vue 3 的混合项目)',
+      description: isEn ? `support for mixed Vue 2 and Vue 3 projects` : `支持 Vue 2 和 Vue 3 的混合项目`,
       value: 'both',
     },
     {
       label: 'None',
-      description: 'The current project does not use Vue(当前项目未使用 Vue)',
+      description: isEn ? `the current project does not use Vue` : `当前项目未使用 Vue`,
       value: 'none',
     },
   ] as const
   const selected = await window.showQuickPick(options, {
-    placeHolder: 'Select the Vue version used by the current workspace(选择当前工作区使用的 Vue 版本)',
+    placeHolder: isEn ? `select the Vue version used by the current workspace` : `选择当前工作区使用的 Vue 版本`,
     ignoreFocusOut, // 忽略失去焦点后自动关闭
   })
   return selected?.value
@@ -87,7 +87,7 @@ export function updateVueVersionInWorkspace(vueVersion: VueSupportType): VueSupp
   const workspaceConfig = workspace.getConfiguration(extensionId) // 获取工作区的配置
   // 更新工作区设置
   workspaceConfig.update(vueSelectionConfigName, vueVersion, ConfigurationTarget.Workspace)
-  window.showInformationMessage(`The Vue version of the current workspace is set to(当前工作区的 Vue 版本已设置为): ${vueVersion}`)
+  window.showInformationMessage(isEn ? `the Vue version of the current workspace is set to:${vueVersion}` : `当前工作区的 Vue 版本已设置为:${vueVersion}`)
   return vueVersion
 }
 /** 检测用户的vue版本是否和package.json中的vue版本一致 */
@@ -98,13 +98,23 @@ export async function detectVueVersionMismatch() {
   if (!['vue2', 'vue3'].includes(workspaceVersion)) return // 如果配置中不是vue2或者vue3就不做检测
   const packageJsonVersion = getVueVersionFromPackageJson() // 获取package.json中的vue版本
   if (workspaceVersion && packageJsonVersion && workspaceVersion !== packageJsonVersion) {
-    const action = await window.showWarningMessage(`检测到工作区设置的 Vue 版本 (${workspaceVersion}) 与 package.json 中的版本 (${packageJsonVersion}) 不匹配。是否更新？`, '更新设置', '忽略', '当前工作区不再提示')
-    if (action === '更新设置') {
-      updateVueVersionInWorkspace(packageJsonVersion)
-    } else if (action === '当前工作区不再提示') {
-      // 在用户配置中记录忽略提示的标志
-      updateUserWorkspaceConfig('ignoreVueVersionMismatch', true)
-    }
+    const { message, update, ignore, theCurrentWorkspaceNoLongerPrompts } = {
+      en: {
+        message: `a mismatch was detected between the Vue version of the workspace setting (${workspaceVersion}) and the version in package.json (${packageJsonVersion}). Is it updated?`,
+        update: 'update Settings',
+        ignore: 'ignore',
+        theCurrentWorkspaceNoLongerPrompts: 'Ccrrent workspace ignore',
+      },
+      zh: {
+        message: `检测到工作区设置的 Vue 版本(${workspaceVersion}) 与 package.json 中的版本 (${packageJsonVersion}) 不匹配。是否更新？`,
+        update: '更新设置',
+        ignore: '忽略',
+        theCurrentWorkspaceNoLongerPrompts: '当前工作区不再提示',
+      },
+    }[extensionLanguage]
+    const action = await window.showWarningMessage(message, update, ignore, theCurrentWorkspaceNoLongerPrompts)
+    if (action === update) updateVueVersionInWorkspace(packageJsonVersion) // 更新当前工作区的 Vue 版本配置
+    if (action === theCurrentWorkspaceNoLongerPrompts) updateUserWorkspaceConfig('ignoreVueVersionMismatch', true) // 在用户配置中记录忽略提示的标志
   }
 }
 /** 创建状态栏项 */
@@ -115,7 +125,7 @@ let vueStatusBarItem: StatusBarItem | undefined
 export function initializeStatusBar() {
   if (!vueStatusBarItem) {
     vueStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 100)
-    vueStatusBarItem.tooltip = 'Change the Vue version(切换 Vue 版本)'
+    vueStatusBarItem.tooltip = isEn ? `change the Vue version` : `切换 Vue 版本`
     vueStatusBarItem.command = CommandList.selectVueVersion
     vueStatusBarItem.show()
   }

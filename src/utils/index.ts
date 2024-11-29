@@ -1,6 +1,6 @@
 import { workspace, ConfigurationTarget, window, RelativePattern, type Uri } from 'vscode'
 import type { ExtensionConfig } from '../types/global'
-import { extensionConfig } from '../config/index'
+import { extensionConfig, isEn } from '../config/index'
 const { extensionId } = extensionConfig
 /** 更新用户工作区配置 */
 export const updateUserWorkspaceConfig = async <K extends keyof ExtensionConfig>(key: K, value: ExtensionConfig[K]) => {
@@ -9,9 +9,8 @@ export const updateUserWorkspaceConfig = async <K extends keyof ExtensionConfig>
     const config = workspace.getConfiguration(extensionId)
     // 更新工作区配置
     await config.update(key, value, ConfigurationTarget.Workspace)
-    window.showInformationMessage(`workspace configuration has been updated(已更新工作区配置): ${key} = ${value}`)
   } catch (error: any) {
-    window.showErrorMessage(`failed to update configuration(更新配置失败): ${error.message}`)
+    window.showErrorMessage(isEn ? `failed to update configuration:${error.message}` : `更新配置失败: ${error.message}`)
   }
 }
 /**
