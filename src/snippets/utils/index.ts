@@ -98,21 +98,19 @@ export async function detectVueVersionMismatch() {
   if (!['vue2', 'vue3'].includes(workspaceVersion)) return // 如果配置中不是vue2或者vue3就不做检测
   const packageJsonVersion = getVueVersionFromPackageJson() // 获取package.json中的vue版本
   if (workspaceVersion && packageJsonVersion && workspaceVersion !== packageJsonVersion) {
-    const { message, update, ignore, theCurrentWorkspaceNoLongerPrompts } = {
+    const { message, update, theCurrentWorkspaceNoLongerPrompts } = {
       en: {
         message: `a mismatch was detected between the Vue version of the workspace setting (${workspaceVersion}) and the version in package.json (${packageJsonVersion}). Is it updated?`,
         update: 'update Settings',
-        ignore: 'ignore',
-        theCurrentWorkspaceNoLongerPrompts: 'Ccrrent workspace ignore',
+        theCurrentWorkspaceNoLongerPrompts: 'workspace ignore',
       },
       zh: {
         message: `检测到工作区设置的 Vue 版本(${workspaceVersion}) 与 package.json 中的版本 (${packageJsonVersion}) 不匹配。是否更新？`,
         update: '更新设置',
-        ignore: '忽略',
         theCurrentWorkspaceNoLongerPrompts: '当前工作区不再提示',
       },
     }[extensionLanguage]
-    const action = await window.showWarningMessage(message, update, ignore, theCurrentWorkspaceNoLongerPrompts)
+    const action = await window.showWarningMessage(message, update, theCurrentWorkspaceNoLongerPrompts)
     if (action === update) updateVueVersionInWorkspace(packageJsonVersion) // 更新当前工作区的 Vue 版本配置
     if (action === theCurrentWorkspaceNoLongerPrompts) updateUserWorkspaceConfig('ignoreVueVersionMismatch', true) // 在用户配置中记录忽略提示的标志
   }
