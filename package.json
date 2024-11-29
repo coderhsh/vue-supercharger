@@ -50,25 +50,20 @@
             "none"
           ],
           "markdownEnumDescriptions": [
-            "选择 **Vue 2** 作为代码片段的支持版本。",
-            "选择 **Vue 3** 作为代码片段的支持版本。",
-            "同时启用 **Vue 2 和 Vue 3** 的代码片段支持。",
-            "自动检测当前项目使用的 Vue 版本，检测顺序为：`package.json` 中的vue版本 -> 手动选择。",
-            "禁用所有 Vue 代码片段支持。"
+            "%configuration.vueSelection.vue2%",
+            "%configuration.vueSelection.vue3%",
+            "%configuration.vueSelection.both%",
+            "%configuration.vueSelection.auto%",
+            "%configuration.vueSelection.none%"
           ],
           "default": "auto",
-          "description": "选择要启用的Vue代码片段"
-        },
-        "vue-supercharger.isShowHoverTips": {
-          "order": 1,
-          "type": "boolean",
-          "default": true,
-          "description": "是否显示鼠标悬浮提示"
+          "description": "%configuration.vueSelection.description%"
         },
         "vue-supercharger.ignoreVueVersionMismatch": {
+          "order": 20,
           "type": "boolean",
           "default": false,
-          "description": "是否忽略vue版本不一致的提示"
+          "description": "%configuration.ignoreVueVersionMismatch.description%"
         }
       }
     },
@@ -80,7 +75,7 @@
     "commands": [
       {
         "command": "vue-supercharger.selectVueVersion",
-        "title": "选择Vue版本"
+        "title": "%command.selectVueVersion.title%"
       }
     ]
   },
