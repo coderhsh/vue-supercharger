@@ -1,0 +1,10 @@
+{
+  "configuration.vueSelection.description": "选择要启用的Vue代码片段",
+  "configuration.vueSelection.vue2": "选择 **Vue 2** 作为代码片段的支持版本。",
+  "configuration.vueSelection.vue3": "选择 **Vue 3** 作为代码片段的支持版本。",
+  "configuration.vueSelection.both": "同时启用 **Vue 2 和 Vue 3** 的代码片段支持。",
+  "configuration.vueSelection.auto": "自动检测当前项目使用的 Vue 版本，检测顺序为：`package.json` 中的vue版本 -> 手动选择。",
+  "configuration.vueSelection.none": "禁用所有 Vue 代码片段支持。",
+  "configuration.ignoreVueVersionMismatch.description": "是否忽略vue版本不一致的提示",
+  "command.selectVueVersion.title": "选择vue版本"
+}

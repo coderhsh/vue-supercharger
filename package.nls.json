@@ -1,0 +1,10 @@
+{
+  "configuration.vueSelection.description": "Choose the Vue code snippet support version",
+  "configuration.vueSelection.vue2": "Select **Vue 2** as the supported version for code snippets.",
+  "configuration.vueSelection.vue3": "Select **Vue 3** as the supported version for code snippets.",
+  "configuration.vueSelection.both": "Enable code snippets support for both **Vue 2 and Vue 3**.",
+  "configuration.vueSelection.auto": "Automatically detect the Vue version used in the current project. Detection order: vue version in `package.json` -> manual selection.",
+  "configuration.vueSelection.none": "Disable all Vue code snippet support.",
+  "configuration.ignoreVueVersionMismatch.description": "Whether to ignore the prompt of inconsistent vue versions",
+  "command.selectVueVersion.title": "Select Vue version "
+}
