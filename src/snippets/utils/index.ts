@@ -6,13 +6,13 @@ import { join } from 'path'
 import config, { snippetPaths } from '../config'
 import { userConfig } from '../../config/userConfig'
 import { userCommandList, extensionConfig, isEn } from '../../config/index'
-import { updateUserWorkspaceConfig } from '../../utils'
+import { updateUserWorkspaceConfig, findFilesFromWorkspace } from '../../utils'
 const { extensionId, extensionLanguage, extensionName } = extensionConfig
 const { vueSelectionConfigName, defaultHighlightsLanguage } = config
 
 /** 注册代码片段 */
 export function registerSnippets(selection: VueSupportType): Disposable[] {
-  if (!selection) return []
+  if (!selection || selection == 'none') return []
   const disposables: Disposable[] = []
   const selectedPaths = snippetPaths[selection] || [] // 获取用户选中的代码片段路径
   // 加载用户选择的代码片段
@@ -51,10 +51,11 @@ export function registerSnippets(selection: VueSupportType): Disposable[] {
   return disposables
 }
 /** 获取需要支持的vue版本,如果用户选择的是auto提示用户是否配置为当前工作区 */
-export async function getVueVersion(confirm = true) {
-  // 获取配置的 vueSelection
-  let { vueSelection } = userConfig
-  if (vueSelection !== 'auto') return vueSelection
+export async function getVueVersion(confirm = true): Promise<VueSupportType> {
+  let { vueSelection } = userConfig // 获取配置的 vueSelection
+  if (vueSelection !== 'auto') return vueSelection // 用户选择的不是auto直接返回用户选择的
+  const packageJsonPathList = await findFilesFromWorkspace('package.json') // 检查用户工作区是否存在package.json
+  if (!packageJsonPathList.length) return updateVueVersionInWorkspace('none') // 如果没有package.json文件，直接返回none
   // 如果是 auto，尝试从 package.json 中读取 Vue 版本
   vueSelection = getVueVersionFromPackageJson()
   // 如果没有读取到，则提示用户选择
