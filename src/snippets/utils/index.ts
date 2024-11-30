@@ -1,14 +1,109 @@
-import { VueSupportType } from '../types'
+import type { VueSupportType, CustomCompletionItem } from '../types'
+import type { TextDocument, StatusBarItem, CompletionItem as CompletionItemType, Disposable } from 'vscode'
 import { CommandList } from '../types/enum'
-import { workspace, window, ConfigurationTarget, StatusBarAlignment, type StatusBarItem } from 'vscode'
+import { workspace, window, ConfigurationTarget, StatusBarAlignment, CompletionItem, CompletionItemKind, SnippetString, languages, MarkdownString } from 'vscode'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import config from '../config'
+import config, { snippetPaths } from '../config'
 import { userConfig } from '../../config/userConfig'
 import { extensionConfig, isEn } from '../../config/index'
 import { updateUserWorkspaceConfig } from '../../utils'
-const { extensionId, extensionLanguage } = extensionConfig
-const { vueSelectionConfigName } = config
+const { extensionId, extensionLanguage, extensionName } = extensionConfig
+const { vueSelectionConfigName, defaultHighlightsLanguage } = config
+
+/** 注册代码片段 */
+export function registerSnippets(selection: VueSupportType): Disposable[] {
+  if (!selection) return []
+  const disposables: Disposable[] = []
+  const selectedPaths = snippetPaths[selection] || [] // 获取用户选中的代码片段路径
+  // 加载用户选择的代码片段
+  const snippets = selectedPaths.reduce<CustomCompletionItem[]>((result, path) => {
+    try {
+      return result.concat(loadSnippetsFromFile(path))
+    } catch {
+      console.error(`Failed to load snippets from ${path}:`)
+      return result
+    }
+  }, [])
+  const provider = languages.registerCompletionItemProvider(
+    { scheme: 'file' },
+    {
+      provideCompletionItems(document: TextDocument) {
+        // 筛选生效的代码片段
+        const language = document.languageId // 获取当前文件语言
+        /** 筛选命中当前文件的代码片段 */
+        const filteredSnippets = snippets.filter(({ scopeList = [] }) => !scopeList.length || scopeList.includes(language))
+        /** 添加右侧代码提示 */
+        filteredSnippets.forEach(snippet => {
+          const { scopeList, insertText, description } = snippet
+          const [highlightsLanguage] = scopeList || [defaultHighlightsLanguage] // 获取需要高亮的语法(优先使用代码片段中scope的第一项作为高亮的语法,如果没有则使用默认的)
+          const snippetBody = typeof insertText === 'string' ? insertText : insertText?.value || insertText?.toString()
+          // 设置 Markdown 格式的补全说明
+          const markdown = new MarkdownString()
+          markdown.appendCodeblock(snippetBody || '', highlightsLanguage) //  第二个参数表示代码片段的语言高亮
+          snippet.documentation = markdown
+          snippet.detail = `${extensionName}: ${description || ''}` // 简短的右侧上面提示
+        })
+        return filteredSnippets
+      },
+    }
+  )
+  disposables.push(provider)
+  return disposables
+}
+/** 获取需要支持的vue版本,如果用户选择的是auto提示用户是否配置为当前工作区 */
+export async function getVueVersion(confirm = true) {
+  // 获取配置的 vueSelection
+  let { vueSelection } = userConfig
+  if (vueSelection !== 'auto') return vueSelection
+  // 如果是 auto，尝试从 package.json 中读取 Vue 版本
+  vueSelection = getVueVersionFromPackageJson()
+  // 如果没有读取到，则提示用户选择
+  if (!vueSelection) vueSelection = await selectVueVersionToWorkspace()
+  if (!vueSelection) return vueSelection
+  // 如果不需要确认弹窗则直接更新工作区配置
+  if (!confirm) return updateVueVersionInWorkspace(vueSelection)
+  const { message, yes } = {
+    en: {
+      message: `is ${vueSelection} set to the current workspace vue version?`,
+      yes: 'yes',
+    },
+    zh: {
+      message: `是否设置${vueSelection}为当前工作区vue版本？`,
+      yes: '是',
+    },
+  }[extensionLanguage]
+  // 更新到工作区设置
+  const selection = await window.showInformationMessage(
+    message,
+    { modal: true }, // 设置为模态对话框
+    yes
+  )
+  // 如果用户选择是，则更新到工作区设置
+  if (selection === yes) updateVueVersionInWorkspace(vueSelection)
+  return vueSelection
+}
+/**  从 JSON 文件中加载代码片段 */
+export function loadSnippetsFromFile(filePath: string): CustomCompletionItem[] {
+  const snippets: CompletionItemType[] = []
+  try {
+    const fileContent = readFileSync(filePath, 'utf-8')
+    const jsonContent = JSON.parse(fileContent)
+    for (const key in jsonContent) {
+      const snippet = jsonContent[key]
+      const item = new CompletionItem(snippet.prefix, CompletionItemKind.Snippet) as CustomCompletionItem
+      Object.assign(item, snippet)
+      item.scopeList = snippet.scope ? snippet.scope.split(',') : []
+      item.keepWhitespace = true // 保留缩进
+      item.insertText = new SnippetString(snippet.body.join('\n'))
+      item.detail = snippet.description || item.insertText
+      snippets.push(item)
+    }
+  } catch (err: any) {
+    window.showErrorMessage(`Error loading snippets from ${filePath}: ${err.message}`)
+  }
+  return snippets
+}
 /**
  * 根据 package.json 中的 vue 版本来判断使用 vue2 还是 vue3
  */

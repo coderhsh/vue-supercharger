@@ -1,7 +1,5 @@
 import type { VueSupportType } from './types'
 import { join } from 'path'
-// TODO 当前没用上
-export const enabledLanguages = ['typescript', 'javascript', 'vue'] as const
 export const rootPath = join(__dirname, '..', '..') // 根路径
 export default {
   /** 默认语法高亮语言 */
