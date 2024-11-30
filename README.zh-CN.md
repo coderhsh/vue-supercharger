@@ -307,7 +307,7 @@ export default {
 "editor.snippetSuggestions": "top"
 ``` -->
 
-## 📄 使用说明书:
+## 📄 使用说明:
 
 - 在`vue javascript typescript`文件中，你可以直接使用快捷触发器来插入代码片段。
 - 扩展会根据项目中使用的 Vue 版本自动选择适当的代码片段。
