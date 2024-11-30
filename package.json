@@ -91,6 +91,7 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
     "@types/vscode": "^1.80.0",
@@ -100,5 +101,8 @@
     "@vscode/test-electron": "^2.4.1",
     "eslint": "^9.13.0",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0"
   }
 }
