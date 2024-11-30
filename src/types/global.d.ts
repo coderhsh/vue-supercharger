@@ -8,3 +8,6 @@ type ExtensionConfig = {
   /** 选择需要支持的vue版本 */
   vueSelection: string
 }
+export interface ILanguagePack {
+  [key: string]: string
+}
