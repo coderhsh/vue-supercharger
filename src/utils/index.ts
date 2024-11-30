@@ -10,7 +10,7 @@ export const updateUserWorkspaceConfig = async <K extends keyof ExtensionConfig>
     // 更新工作区配置
     await config.update(key, value, ConfigurationTarget.Workspace)
   } catch (error: any) {
-    window.showErrorMessage(isEn ? `failed to update configuration:${error.message}` : `更新配置失败: ${error.message}`)
+    window.showErrorMessage(isEn ? `configuration update failure:${error.message}` : `配置更新失败: ${error.message}`)
   }
 }
 /**
