@@ -6,6 +6,69 @@
       "this."
     ]
   },
+  "methods": {
+    "prefix": "methods",
+    "scope": "vue",
+    "body": [
+      "methods:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "props": {
+    "prefix": "props",
+    "scope": "vue",
+    "body": [
+      "props:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "computed": {
+    "prefix": "computed",
+    "scope": "vue",
+    "body": [
+      "computed:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "components": {
+    "prefix": "components",
+    "scope": "vue",
+    "body": [
+      "components:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "watch": {
+    "prefix": "watch",
+    "scope": "vue",
+    "body": [
+      "watch:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "filters": {
+    "prefix": "filters",
+    "scope": "vue",
+    "body": [
+      "filters:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
+  "directives": {
+    "prefix": "directives",
+    "scope": "vue",
+    "body": [
+      "directives:{",
+      "\t\t$1",
+      "\t},"
+    ]
+  },
   "beforeCreate": {
     "prefix": "beforeCreate",
     "scope": "vue",
@@ -92,69 +155,6 @@
     "scope": "vue",
     "body": [
       "deactivated(){",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "methods": {
-    "prefix": "methods",
-    "scope": "vue",
-    "body": [
-      "methods:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "props": {
-    "prefix": "props",
-    "scope": "vue",
-    "body": [
-      "props:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "computed": {
-    "prefix": "computed",
-    "scope": "vue",
-    "body": [
-      "computed:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "components": {
-    "prefix": "components",
-    "scope": "vue",
-    "body": [
-      "components:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "watch": {
-    "prefix": "watch",
-    "scope": "vue",
-    "body": [
-      "watch:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "filters": {
-    "prefix": "filters",
-    "scope": "vue",
-    "body": [
-      "filters:{",
-      "\t\t$1",
-      "\t},"
-    ]
-  },
-  "directives": {
-    "prefix": "directives",
-    "scope": "vue",
-    "body": [
-      "directives:{",
       "\t\t$1",
       "\t},"
     ]

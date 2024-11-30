@@ -36,39 +36,6 @@
       "const ${1:foo} = reactive($2)"
     ]
   },
-  "Vue3Component": {
-    "prefix": "vue",
-    "description": "Vue 3 component",
-    "scope": "vue",
-    "body": [
-      "<template>",
-      "  <div>${1:$TM_FILENAME_BASE}</div>",
-      "</template>",
-      "",
-      "<script setup lang=\"${2|ts,js|}\">",
-      "$3",
-      "</script>",
-      "",
-      "<style scoped lang=\"${4|less,scss|}\">",
-      "</style>"
-    ]
-  },
-  "v-for": {
-    "prefix": "vFor",
-    "scope": "vue",
-    "body": [
-      "v-for=\"(${2:item}, ${3:index}) in ${1:items}\" :key=\"${4:index}\""
-    ]
-  },
-  "setup": {
-    "prefix": "setup",
-    "scope": "vue",
-    "body": [
-      "setup(${0:props}){",
-      "$1",
-      "}"
-    ]
-  },
   "onBeforeMount": {
     "prefix": "onBeforeMount",
     "scope": "typescript,javascript,vue",
@@ -182,11 +149,44 @@
       "defineEmits(['$1'])"
     ]
   },
+  "v-for": {
+    "prefix": "vFor",
+    "scope": "vue",
+    "body": [
+      "v-for=\"(${2:item}, ${3:index}) in ${1:items}\" :key=\"${4:index}\""
+    ]
+  },
+  "setup": {
+    "prefix": "setup",
+    "scope": "vue",
+    "body": [
+      "setup(${0:props}){",
+      "$1",
+      "}"
+    ]
+  },
   "provide": {
     "prefix": "provide",
     "scope": "typescript,javascript,vue",
     "body": [
       "provide(${1:'key'},${2:value})"
+    ]
+  },
+  "Vue3Component": {
+    "prefix": "vue",
+    "description": "Vue 3 component",
+    "scope": "vue",
+    "body": [
+      "<template>",
+      "  <div>${1:$TM_FILENAME_BASE}</div>",
+      "</template>",
+      "",
+      "<script setup lang=\"${2|ts,js|}\">",
+      "$3",
+      "</script>",
+      "",
+      "<style scoped lang=\"${4|less,scss|}\">",
+      "</style>"
     ]
   }
 }
