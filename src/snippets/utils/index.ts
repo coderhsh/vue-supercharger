@@ -1,12 +1,11 @@
 import type { VueSupportType, CustomCompletionItem } from '../types'
 import type { TextDocument, StatusBarItem, CompletionItem as CompletionItemType, Disposable } from 'vscode'
-import { CommandList } from '../types/enum'
 import { workspace, window, ConfigurationTarget, StatusBarAlignment, CompletionItem, CompletionItemKind, SnippetString, languages, MarkdownString } from 'vscode'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import config, { snippetPaths } from '../config'
 import { userConfig } from '../../config/userConfig'
-import { extensionConfig, isEn } from '../../config/index'
+import { userCommandList, extensionConfig, isEn } from '../../config/index'
 import { updateUserWorkspaceConfig } from '../../utils'
 const { extensionId, extensionLanguage, extensionName } = extensionConfig
 const { vueSelectionConfigName, defaultHighlightsLanguage } = config
@@ -83,7 +82,7 @@ export async function getVueVersion(confirm = true) {
   if (selection === yes) updateVueVersionInWorkspace(vueSelection)
   return vueSelection
 }
-/**  从 JSON 文件中加载代码片段 */
+/** 从 JSON 文件中加载代码片段 */
 export function loadSnippetsFromFile(filePath: string): CustomCompletionItem[] {
   const snippets: CompletionItemType[] = []
   try {
@@ -219,7 +218,7 @@ export function initializeStatusBar() {
   if (!vueStatusBarItem) {
     vueStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 100)
     vueStatusBarItem.tooltip = isEn ? `change the Vue version` : `切换 Vue 版本`
-    vueStatusBarItem.command = CommandList.selectVueVersion
+    vueStatusBarItem.command = userCommandList.selectVueVersion
     vueStatusBarItem.show()
   }
   updateStatusBar() // 初始化状态栏内容
