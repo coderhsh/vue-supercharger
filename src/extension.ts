@@ -10,7 +10,7 @@ export function activate(this: any, context: vscode.ExtensionContext) {
   // 如果没有工作区根目录，直接返回
   if (!workspaceFolders || workspaceFolders.length === 0) return
   ;(async () => {
-    const packageJsonPathList = await findFilesFromWorkspace('package.json', 1)
+    const packageJsonPathList = await findFilesFromWorkspace('package.json')
     if (!packageJsonPathList.length) return // 如果没有package.json文件，直接返回
     initUserConfig(context) // 初始化用户配置
     initCommand.call(this, vscode, context) // 初始化所有命令
