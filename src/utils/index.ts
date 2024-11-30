@@ -2,7 +2,10 @@ import { workspace, ConfigurationTarget, window, RelativePattern, type Uri } fro
 import type { ExtensionConfig } from '../types/global'
 import { extensionConfig, isEn } from '../config/index'
 const { extensionId } = extensionConfig
-/** 更新用户工作区配置 */
+/** 更新用户工作区配置
+ * @param key 配置键
+ * @param value 配置值
+ */
 export const updateUserWorkspaceConfig = async <K extends keyof ExtensionConfig>(key: K, value: ExtensionConfig[K]) => {
   try {
     // 获取插件的配置命名空间
