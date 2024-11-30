@@ -16,25 +16,134 @@ Vue Supercharger is an extension designed to enhance Vue development by improvin
 
 <summary style="cursor: pointer">Vue 3 Snippets</summary>
 
-#### `cr⇥` | `ref⇥` :
+#### `cr` | `ref` :
 
 ```javascript
 const foo = ref()
 ```
 
-#### `cro⇥` :
+#### `cro` :
 
 ```javascript
 const foo = ref({})
 ```
 
-#### `cra⇥` :
+#### `cra` :
 
 ```javascript
 const foo = ref([])
 ```
 
-#### `vue⇥` :
+#### `onBeforeMount`:
+
+```javascript
+onBeforeMount(() => {})
+```
+
+#### `onMounted`:
+
+```javascript
+onMounted(() => {})
+```
+
+#### `onBeforeUpdate`:
+
+```javascript
+onBeforeUpdate(() => {})
+```
+
+#### `onUpdated`:
+
+```javascript
+onUpdated(() => {})
+```
+
+#### `onBeforeUnmount`:
+
+```javascript
+onBeforeUnmount(() => {})
+```
+
+#### `onUnmounted`:
+
+```javascript
+onUnmounted(() => {})
+```
+
+#### `onActivated`:
+
+```javascript
+onActivated(() => {})
+```
+
+#### `onDeactivated`:
+
+```javascript
+onDeactivated(() => {})
+```
+
+#### `comp`:
+
+```javascript
+computed(() => {})
+```
+
+#### `watch`:
+
+```javascript
+watch(foo, (newVal, oldVal) => {})
+```
+
+#### `watchEffect`:
+
+```javascript
+watchEffect(() => {})
+```
+
+#### `defineExpose`:
+
+```javascript
+defineExpose({})
+```
+
+#### `defineOptions`:
+
+```javascript
+defineOptions({})
+```
+
+#### `defineProps`:
+
+```javascript
+defineProps({})
+```
+
+#### `defineEmits`:
+
+```javascript
+defineEmits([''])
+```
+
+#### `vFor`:
+
+```html
+v-for="(item, index) in items" :key="index"
+```
+
+#### `setup`:
+
+```javascript
+setup(props){
+}
+```
+
+#### `provide`:
+
+```javascript
+provide('key', value)
+```
+
+#### `vue` :
 
 ```html
 <template>
@@ -46,115 +155,6 @@ const foo = ref([])
 <style scoped lang="less"></style>
 ```
 
-#### `vFor⇥`:
-
-```html
-v-for="(item, index) in items" :key="index"
-```
-
-#### `setup⇥`:
-
-```javascript
-setup(props){
-}
-```
-
-#### `onBeforeMount⇥`:
-
-```javascript
-onBeforeMount(() => {})
-```
-
-#### `onMounted⇥`:
-
-```javascript
-onMounted(() => {})
-```
-
-#### `onBeforeUpdate⇥`:
-
-```javascript
-onBeforeUpdate(() => {})
-```
-
-#### `onUpdated⇥`:
-
-```javascript
-onUpdated(() => {})
-```
-
-#### `onBeforeUnmount⇥`:
-
-```javascript
-onBeforeUnmount(() => {})
-```
-
-#### `onUnmounted⇥`:
-
-```javascript
-onUnmounted(() => {})
-```
-
-#### `onActivated⇥`:
-
-```javascript
-onActivated(() => {})
-```
-
-#### `onDeactivated⇥`:
-
-```javascript
-onDeactivated(() => {})
-```
-
-#### `comp⇥`:
-
-```javascript
-computed(() => {})
-```
-
-#### `watch⇥`:
-
-```javascript
-watch(foo, (newVal, oldVal) => {})
-```
-
-#### `watchEffect⇥`:
-
-```javascript
-watchEffect(() => {})
-```
-
-#### `defineExpose⇥`:
-
-```javascript
-defineExpose({})
-```
-
-#### `defineOptions⇥`:
-
-```javascript
-defineOptions({})
-```
-
-#### `defineProps⇥`:
-
-```javascript
-defineProps({})
-```
-
-#### `defineEmits⇥`:
-
-```javascript
-defineEmits([''])
-```
-
-#### `provide⇥`:
-
-```javascript
-provide('key', value)
-```
-
 </details>
 
 ### <!-- Vue2 Snippets -->
@@ -163,10 +163,59 @@ provide('key', value)
 
 <summary style="cursor: pointer">Vue 2 Snippets</summary>
 
-#### `th⇥`:
+#### `th`:
 
 ```javascript
 this.
+```
+
+#### `methods`
+
+```javascript
+methods: {
+},
+```
+
+#### `props`
+
+```javascript
+props: {
+},
+```
+
+#### `computed`
+
+```javascript
+computed: {
+},
+```
+
+#### `components`
+
+```javascript
+components: {
+},
+```
+
+#### `watch`
+
+```javascript
+watch: {
+},
+```
+
+#### `filters`
+
+```javascript
+filters: {
+},
+```
+
+#### `directives`
+
+```javascript
+directives: {
+},
 ```
 
 #### `beforeCreate`
@@ -227,55 +276,6 @@ this.
 
 ```javascript
   deactivated(){},
-```
-
-#### `methods`
-
-```javascript
-methods: {
-},
-```
-
-#### `props`
-
-```javascript
-props: {
-},
-```
-
-#### `computed`
-
-```javascript
-computed: {
-},
-```
-
-#### `components`
-
-```javascript
-components: {
-},
-```
-
-#### `watch`
-
-```javascript
-watch: {
-},
-```
-
-#### `filters`
-
-```javascript
-filters: {
-},
-```
-
-#### `directives`
-
-```javascript
-directives: {
-},
 ```
 
 #### `vue`
