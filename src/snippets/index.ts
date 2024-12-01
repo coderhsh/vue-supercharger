@@ -2,7 +2,7 @@ import type { ExtensionContext, Disposable } from 'vscode'
 import { workspace } from 'vscode'
 import { extensionConfig } from '../config/index'
 import config from './config'
-import { detectVueVersionMismatch, initializeStatusBar, updateStatusBar, getVueVersion, registerSnippets } from './utils'
+import { detectVueVersionMismatch, initializeStatusBar, updateStatusBar, getVueVersion, registerSnippets } from './method'
 import type { VueSupportType } from './types'
 const { vueSelectionConfigName } = config
 const { extensionId } = extensionConfig

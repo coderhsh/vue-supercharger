@@ -1,5 +1,5 @@
 import type { vscodeApi } from '../types/global'
-import { selectVueVersionToWorkspace, askUserToSetVueVersionInWorkspace } from '../snippets/utils/index'
+import { selectVueVersionToWorkspace, askUserToSetVueVersionInWorkspace } from '../snippets/method/index'
 import { updateVueVersion } from '../snippets'
 import { getUserConfig } from '../utils'
 // 创建命令列表
