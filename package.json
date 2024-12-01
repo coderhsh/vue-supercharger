@@ -3,7 +3,7 @@
   "displayName": "Vue Supercharger",
   "publisher": "coderhsh",
   "description": "development tool tailored for Vue developers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -88,6 +88,7 @@
   ],
   "scripts": {
     "build": "vsce package",
+    "publish": "vsce publish",
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
