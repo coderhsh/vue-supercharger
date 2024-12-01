@@ -19,6 +19,8 @@ export const userCommandList = {
 export const userConfigList = {
   /** 需要支持的vue版本 */
   vueSelection: `vueSelection`,
+  /** 忽略vue版本不匹配 */
+  ignoreVueVersionMismatch: 'ignoreVueVersionMismatch',
 } as const
 /** 是否是英文 */
 export const isEn = extensionConfig.extensionLanguage === 'en'
