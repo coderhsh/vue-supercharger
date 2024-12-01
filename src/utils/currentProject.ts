@@ -1,7 +1,6 @@
 import { workspace, ConfigurationTarget, window } from 'vscode'
 import type { ExtensionConfig } from '../types/global'
 import { extensionConfig, isEn, userConfigList } from '../config/index'
-import userConfig from '../config/userConfig'
 const { extensionId } = extensionConfig
 /** 更新用户工作区配置
  * @param key 配置键
@@ -19,5 +18,5 @@ export const updateUserWorkspaceConfig = async <K extends keyof ExtensionConfig>
 }
 /** 获取用户的某个配置 */
 export const getUserConfig = <K extends keyof typeof userConfigList>(key: K) => {
-  return userConfig.get(userConfigList[key])
+  return workspace.getConfiguration(extensionId).get(userConfigList[key])
 }
