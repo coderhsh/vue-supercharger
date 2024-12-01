@@ -15,6 +15,11 @@ export const userCommandList = {
   /** 选择要支持的vue版本 */
   selectVueVersion: `vue-supercharger.selectVueVersion`,
 } as const
+/** 提供给用户的配置列表 */
+export const userConfigList = {
+  /** 需要支持的vue版本 */
+  vueSelection: `vueSelection`,
+} as const
 /** 是否是英文 */
 export const isEn = extensionConfig.extensionLanguage === 'en'
 export default extensionConfig
