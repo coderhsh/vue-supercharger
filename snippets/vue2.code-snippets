@@ -1,5 +1,5 @@
 {
-  "this": {
+  "th": {
     "prefix": "th",
     "scope": "vue",
     "body": [
@@ -159,7 +159,7 @@
       "\t},"
     ]
   },
-  "Vue2Component": {
+  "vue": {
     "prefix": "vue",
     "description": "Vue 2 component",
     "scope": "vue",

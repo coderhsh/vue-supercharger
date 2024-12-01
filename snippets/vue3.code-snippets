@@ -1,19 +1,19 @@
 {
-  "创建ref": {
+  "cr": {
     "prefix": "cr",
     "scope": "typescript,javascript,vue",
     "body": [
       "const ${1:foo} = ref($2)"
     ]
   },
-  "创建ref变量": {
+  "ref": {
     "prefix": "ref",
     "scope": "typescript,javascript,vue",
     "body": [
       "const ${1:foo} = ref($2)"
     ]
   },
-  "创建ref对象": {
+  "cro": {
     "prefix": "cro",
     "scope": "typescript,javascript,vue",
     "body": [
@@ -22,14 +22,14 @@
       "})"
     ]
   },
-  "创建ref数组": {
+  "cra": {
     "prefix": "cra",
     "scope": "typescript,javascript,vue",
     "body": [
       "const ${1:foo} = ref([$2])"
     ]
   },
-  "创建reactive变量": {
+  "reactive": {
     "prefix": "reactive",
     "scope": "typescript,javascript,vue",
     "body": [
