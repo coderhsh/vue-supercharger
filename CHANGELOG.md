@@ -1,6 +1,12 @@
 # Change Log
 
-### v0.0.1: (2024-11-27)
+### v1.0.1: (2024-12-1)
+
+`chore:`
+
+1.optimize the user experience
+
+### v1.0.0: (2024-11-27)
 
 `feat:`
 
