@@ -50,19 +50,21 @@ export function registerSnippets(selection: VueSupportType): Disposable[] {
   disposables.push(provider)
   return disposables
 }
-/** 获取需要支持的vue版本,如果用户选择的是auto提示用户是否配置为当前工作区 */
-export async function getVueVersion(confirm = true): Promise<VueSupportType> {
-  let { vueSelection } = userConfig // 获取配置的 vueSelection
+/** 获取需要支持的vue版本 */
+export async function getVueVersion(): Promise<VueSupportType> {
+  let { vueSelection } = userConfig // 当前工作区的vue版本
   if (vueSelection !== 'auto') return vueSelection // 用户选择的不是auto直接返回用户选择的
-  const packageJsonPathList = await findFilesFromWorkspace('package.json') // 检查用户工作区是否存在package.json
-  if (!packageJsonPathList.length) return updateVueVersionInWorkspace('none') // 如果没有package.json文件，直接返回none
-  // 如果是 auto，尝试从 package.json 中读取 Vue 版本
+  const packageJsonPathList = await findFilesFromWorkspace('package.json') // 检查用户工作区最外层是否存在package.json
+  if (!packageJsonPathList.length) return (vueSelection = 'none') // 如果没有package.json文件，直接返回none
+  // 如果是 auto，并且有package.json , 尝试从 package.json 中读取 Vue 版本
   vueSelection = getVueVersionFromPackageJson()
-  // 如果没有读取到，则提示用户选择
-  if (!vueSelection) vueSelection = await selectVueVersionToWorkspace()
-  if (!vueSelection) return vueSelection
-  // 如果不需要确认弹窗则直接更新工作区配置
-  if (!confirm) return updateVueVersionInWorkspace(vueSelection)
+  // 如果没有从PackageJson读取到Vue版本默认为当前工作区没有使用vue
+  if (!vueSelection) return (vueSelection = 'none')
+  return vueSelection
+}
+/* 询问用户是否要更新到工作区版本 */
+export async function askUserToSetVueVersionInWorkspace(vueSelection: VueSupportType) {
+  vueSelection = vueSelection || (await getVueVersion())
   const { message, yes } = {
     en: {
       message: `is ${vueSelection} set to the current workspace vue version?`,
@@ -81,7 +83,6 @@ export async function getVueVersion(confirm = true): Promise<VueSupportType> {
   )
   // 如果用户选择是，则更新到工作区设置
   if (selection === yes) updateVueVersionInWorkspace(vueSelection)
-  return vueSelection
 }
 /** 从 JSON 文件中加载代码片段 */
 export function loadSnippetsFromFile(filePath: string): CustomCompletionItem[] {
@@ -210,26 +211,24 @@ export async function detectVueVersionMismatch() {
     if (action === theCurrentWorkspaceNoLongerPrompts) updateUserWorkspaceConfig('ignoreVueVersionMismatch', true) // 在用户配置中记录忽略提示的标志
   }
 }
-/** 创建状态栏项 */
+/** 状态栏实例 */
 let vueStatusBarItem: StatusBarItem | undefined
 /**
  * 初始化状态栏
  */
 export function initializeStatusBar() {
-  if (!vueStatusBarItem) {
-    vueStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 100)
-    vueStatusBarItem.tooltip = isEn ? `change the Vue version` : `切换 Vue 版本`
-    vueStatusBarItem.command = userCommandList.selectVueVersion
-    vueStatusBarItem.show()
-  }
+  if (vueStatusBarItem) return // 如果状态栏项已存在，则直接返回
+  vueStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 100)
+  vueStatusBarItem.tooltip = isEn ? `change the Vue version` : `切换 Vue 版本`
+  vueStatusBarItem.command = userCommandList.selectVueVersion
   updateStatusBar() // 初始化状态栏内容
+  vueStatusBarItem.show()
 }
 /**
  * 更新状态栏内容
  */
-export function updateStatusBar() {
-  const vueVersion = userConfig.get(vueSelectionConfigName, '')
-  if (vueStatusBarItem) {
-    vueStatusBarItem.text = `Vue: ${vueVersion || ''}`
-  }
+export const updateStatusBar = async (vueVersion?: string) => {
+  if (!vueStatusBarItem) return // 如果状态栏实例不存在，则直接返回
+  vueVersion = vueVersion || (await getVueVersion()) // 获取当前工作区的 Vue 版本
+  vueStatusBarItem.text = `Vue: ${vueVersion || ''}`
 }
