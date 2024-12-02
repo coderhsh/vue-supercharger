@@ -1,5 +1,11 @@
 # Change Log
 
+### v1.0.2: (2024-12-2)
+
+`fix:`
+
+1.fixed some minor bugs
+
 ### v1.0.1: (2024-12-1)
 
 `chore:`

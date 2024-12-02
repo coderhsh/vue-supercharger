@@ -121,14 +121,11 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
     const packageJson = JSON.parse(packageJsonFile)
     // 获取 vue 版本
     const vueVersion = packageJson.dependencies?.vue || packageJson.devDependencies?.vue
-    if (!vueVersion) {
-      // window.showWarningMessage('未在 package.json 中找到 vue 依赖')
-      return
-    }
+    if (!vueVersion) return
     // 使用正则表达式匹配主版本号
-    const versionMatch = vueVersion.match(/^(\^|~|>=|<=|<|>|\*|\d+)\.?(\d+)/)
+    const versionMatch = vueVersion.match(/^([~^>=<]*)?(\d+)(?=\.)/)
     if (versionMatch) {
-      const majorVersion = parseInt(versionMatch[2], 10) // 提取主版本号
+      const majorVersion = parseInt(versionMatch[2], 10)
       if (majorVersion === 2) return 'vue2'
       else if (majorVersion === 3) return 'vue3'
     }

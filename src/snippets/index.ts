@@ -20,10 +20,11 @@ export default async function initSnippets(context: ExtensionContext) {
   // 监听用户修改vue版本配置
   workspace.onDidChangeConfiguration(async e => {
     if (!e.affectsConfiguration(`${extensionId}.${vueSelectionConfigName}`)) return
-    updateVueVersion()
   })
 }
-/** 更新vue版本 */
+/** 更新vue版本
+ * @param vueVersion 要更新的vue版本
+ */
 export const updateVueVersion = async (vueVersion?: VueSupportType) => {
   if (vueVersion === currentVueVersion) return // 如果要更新的vue版本和当前的vue版本相同就不做处理
   vueVersion = vueVersion || (await getVueVersion()) // 如果没有传入vue版本则根据当前配置文件获取vue版本
