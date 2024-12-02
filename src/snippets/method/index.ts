@@ -1,7 +1,7 @@
 import type { VueSupportType, CustomCompletionItem } from '../types'
 import type { TextDocument, StatusBarItem, CompletionItem as CompletionItemType, Disposable } from 'vscode'
 import { workspace, window, ConfigurationTarget, StatusBarAlignment, CompletionItem, CompletionItemKind, SnippetString, languages, MarkdownString } from 'vscode'
-import { readFileSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import config, { snippetPaths } from '../config'
 import { userConfig } from '../../config/userConfig'
@@ -107,6 +107,7 @@ export function loadSnippetsFromFile(filePath: string): CustomCompletionItem[] {
 }
 /**
  * 根据 package.json 中的 vue 版本来判断使用 vue2 还是 vue3
+ * @returns 'vue2' | 'vue3' | undefined
  */
 export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
   // 获取当前工作区的根路径
@@ -114,28 +115,28 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
   if (!workspaceFolder) return
   // 构建 package.json 的路径
   const packageJsonPath = join(workspaceFolder, 'package.json')
+  if (!existsSync(packageJsonPath)) return
   const packageJsonFile = readFileSync(packageJsonPath, 'utf-8')
   if (!packageJsonFile) return
   try {
     // 读取并解析 package.json 文件
     const packageJson = JSON.parse(packageJsonFile)
     // 获取 vue 版本
-    const vueVersion = packageJson.dependencies?.vue || packageJson.devDependencies?.vue
+    const vueVersion: string | undefined = packageJson.dependencies?.vue || packageJson.devDependencies?.vue
     if (!vueVersion) return
     // 使用正则表达式匹配主版本号
-    const versionMatch = vueVersion.match(/^([~^>=<]*)?(\d+)(?=\.)/)
+    // const versionMatch = vueVersion.match(/^([~^>=<]*)?(\d+)(?=\.)/)
+    const versionMatch = vueVersion.match(/^(?:[~^<>=*| ]+)?(\d+)(?:\.\d+)?(?:\.\d+)?(?:-[\w.+]+)?/)
     if (versionMatch) {
-      const majorVersion = parseInt(versionMatch[2], 10)
+      const majorVersion = parseInt(versionMatch[1], 10)
       if (majorVersion === 2) return 'vue2'
-      else if (majorVersion === 3) return 'vue3'
+      if (majorVersion === 3) return 'vue3'
     }
     // 如果版本号不匹配 vue2 或 vue3
     window.showWarningMessage(isEn ? 'the Vue version used by the project is not Vue 2 or Vue 3' : '项目使用的 Vue 版本不是 Vue 2 或 Vue 3')
-    return
   } catch (error: any) {
     // 捕获读取和解析错误
     window.showErrorMessage(isEn ? `unable to parse package.json: ${error.message}` : `无法解析 package.json: ${error.message}`)
-    return
   }
 }
 /**
