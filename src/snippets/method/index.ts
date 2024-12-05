@@ -1,5 +1,5 @@
 import type { VueSupportType, CustomCompletionItem } from '../types'
-import type { TextDocument, StatusBarItem, CompletionItem as CompletionItemType, Disposable } from 'vscode'
+import type { TextDocument, StatusBarItem, CompletionItem as CompletionItemType, Disposable, Position } from 'vscode'
 import { workspace, window, ConfigurationTarget, StatusBarAlignment, CompletionItem, CompletionItemKind, SnippetString, languages, MarkdownString } from 'vscode'
 import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
@@ -27,7 +27,13 @@ export function registerSnippets(selection: VueSupportType): Disposable[] {
   const provider = languages.registerCompletionItemProvider(
     { scheme: 'file' },
     {
-      provideCompletionItems(document: TextDocument) {
+      provideCompletionItems(document: TextDocument, position: Position) {
+        // 获取当前行的完整文本
+        const lineText = document.lineAt(position.line).text
+        // 获取光标前的字符
+        const charBeforeCursor = lineText.charAt(position.character - 1) // 获取光标前一个字符
+        // 如果光标前的字符是 '$'，可以进行相应处理
+        if (charBeforeCursor === '$') return [] // 例如：如果光标前是 '$'，不进行代码片段提示
         // 筛选生效的代码片段
         const language = document.languageId // 获取当前文件语言
         /** 筛选命中当前文件的代码片段 */
