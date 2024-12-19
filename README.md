@@ -16,7 +16,7 @@ Vue Supercharger is an extension designed to enhance Vue development by improvin
 
 <summary style="cursor: pointer">Vue 3 Snippets</summary>
 
-#### `cr` | `ref` :
+#### `cr` :
 
 ```javascript
 const foo = ref()

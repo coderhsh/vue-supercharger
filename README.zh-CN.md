@@ -16,7 +16,7 @@ Language: **中文** | [English](README.md)
 
 <summary style="cursor: pointer">Vue 3 Snippets</summary>
 
-#### `cr` | `ref` :
+#### `cr` :
 
 ```javascript
 const foo = ref()

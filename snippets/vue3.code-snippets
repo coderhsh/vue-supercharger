@@ -6,13 +6,6 @@
       "const ${1:foo} = ref($2)"
     ]
   },
-  "ref": {
-    "prefix": "ref",
-    "scope": "typescript,javascript,vue",
-    "body": [
-      "const ${1:foo} = ref($2)"
-    ]
-  },
   "cro": {
     "prefix": "cro",
     "scope": "typescript,javascript,vue",
