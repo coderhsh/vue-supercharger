@@ -316,7 +316,7 @@ export default {
 
 ## ⚙️ 配置:
 
-Vue Supercharger 会根据你的项目在不同的 Vue 版本之间进行切换，但你可以自行设置以匹配你的偏好。
+Vue Supercharger 会根据你的项目在不同的 Vue 版本之间进行切换，也可以自行设置以匹配你的偏好。
 
 ### 设置
 
@@ -329,7 +329,7 @@ Vue Supercharger 会根据你的项目在不同的 Vue 版本之间进行切换�
 
 1. **我如何切换 Vue 版本支持功能?**
 
-   Vue Supercharger 自动检测工作区中的 Vue 版本，因此无需手动切换。
+   Vue Supercharger 会自动检测工作区中的 Vue 版本，通常无需手动切换。如检测有误，可点击底部状态栏的 Vue 版本进行调整。
 
 ---
 

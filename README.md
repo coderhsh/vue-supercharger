@@ -329,7 +329,7 @@ Vue Supercharger automatically switches between Vue versions based on your proje
 
 1. **How do I switch Vue version support?**
 
-   Vue Supercharger automatically detects the Vue version in your project, so no manual switching is required.
+   Vue Supercharger automatically detects the Vue version in your workspace, so manual switching is usually not required. If the detection is incorrect, you can click on the Vue version in the status bar to switch.
 
 ---
 
