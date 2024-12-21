@@ -2,6 +2,7 @@ import { initUserConfig } from './config/userConfig'
 import initCommand from './command'
 // import initHoverProvider from './hoverProvider'
 import initSnippets from './snippets'
+import initWordCompletion from './wordCompletion'
 import * as vscode from 'vscode'
 import localize from './localize'
 export function activate(this: any, context: vscode.ExtensionContext) {
@@ -15,6 +16,7 @@ export function activate(this: any, context: vscode.ExtensionContext) {
     initCommand.call(this, vscode, context) // 初始化所有命令
     // initHoverProvider(context) // 初始化所有悬浮提示
     initSnippets(context) // 初始化代码片段
+    initWordCompletion(context) // 初始化单词补全
   })()
 }
 export function deactivate() {}
