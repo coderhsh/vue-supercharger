@@ -7,5 +7,13 @@
     "out": true // set this to false to include "out" folder in search results
   },
   // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-  "typescript.tsc.autoDetect": "off"
+  "typescript.tsc.autoDetect": "off",
+  "explorer.fileNesting.enabled": true,
+  //文件成组规则
+  "explorer.fileNesting.patterns": {
+    ".eslintrc.mjs": ".eslint*,.prettier*,.editor*",
+    "package.json": "package*,*.lock,LICENSE,tsconfig.json",
+    "README.md": "README*,CHANGELOG.md,TODO.md",
+    ".gitignore": ".vscodeignore"
+  }
 }
