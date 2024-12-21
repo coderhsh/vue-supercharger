@@ -71,7 +71,12 @@
       "editor/context": [],
       "explorer/context": []
     },
-    "snippets": [],
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/vue-html.code-snippets"
+      }
+    ],
     "commands": [
       {
         "command": "vue-supercharger.selectVueVersion",

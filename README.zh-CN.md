@@ -124,12 +124,6 @@ defineProps({})
 defineEmits([''])
 ```
 
-#### `vFor`:
-
-```html
-v-for="(item, index) in items" :key="index"
-```
-
 #### `setup`:
 
 ```javascript

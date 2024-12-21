@@ -1,0 +1,9 @@
+{
+  "v-for": {
+    "prefix": "vFor",
+    "scope": "vue-html",
+    "body": [
+      "v-for=\"(${2:item}, ${3:index}) in ${1:items}\" :key=\"${4:index}\""
+    ]
+  }
+}

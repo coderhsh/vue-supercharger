@@ -142,13 +142,6 @@
       "defineEmits(['$1'])"
     ]
   },
-  "v-for": {
-    "prefix": "vFor",
-    "scope": "vue",
-    "body": [
-      "v-for=\"(${2:item}, ${3:index}) in ${1:items}\" :key=\"${4:index}\""
-    ]
-  },
   "setup": {
     "prefix": "setup",
     "scope": "vue",
