@@ -130,6 +130,8 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
     // 获取 vue 版本
     const vueVersion: string | undefined = packageJson.dependencies?.vue || packageJson.devDependencies?.vue
     if (!vueVersion) return
+    // 处理关键字版本
+    if (vueVersion.includes('latest')) return 'vue3'
     // 使用正则表达式匹配主版本号
     // const versionMatch = vueVersion.match(/^([~^>=<]*)?(\d+)(?=\.)/)
     const versionMatch = vueVersion.match(/^(?:[~^<>=*| ]+)?(\d+)(?:\.\d+)?(?:\.\d+)?(?:-[\w.+]+)?/)
@@ -138,8 +140,7 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
       if (majorVersion === 2) return 'vue2'
       if (majorVersion === 3) return 'vue3'
     }
-    // 处理关键字版本
-    if (vueVersion.includes('latest')) return 'vue3'
+
     // 如果版本号不匹配 vue2 或 vue3
     window.showWarningMessage(isEn ? 'the Vue version used by the project is not Vue 2 or Vue 3' : '项目使用的 Vue 版本不是 Vue 2 或 Vue 3')
   } catch (error: any) {
