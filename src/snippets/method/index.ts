@@ -130,8 +130,11 @@ export function getVueVersionFromPackageJson(): 'vue2' | 'vue3' | undefined {
     // 获取 vue 版本
     const vueVersion: string | undefined = packageJson.dependencies?.vue || packageJson.devDependencies?.vue
     if (!vueVersion) return
-    // 处理关键字版本
-    if (vueVersion.includes('latest')) return 'vue3'
+    // 处理版本关键字
+    if (vueVersion.includes('latest') || vueVersion.includes('next') || vueVersion === 'latest' || vueVersion === 'next') {
+      console.log('vueVersion:', vueVersion)
+      return 'vue3'
+    }
     // 使用正则表达式匹配主版本号
     // const versionMatch = vueVersion.match(/^([~^>=<]*)?(\d+)(?=\.)/)
     const versionMatch = vueVersion.match(/^(?:[~^<>=*| ]+)?(\d+)(?:\.\d+)?(?:\.\d+)?(?:-[\w.+]+)?/)
