@@ -11,7 +11,7 @@
     "scope": "typescript,javascript,vue",
     "body": [
       "const ${1:foo} = ref({",
-      "$2",
+      "\t$2",
       "})"
     ]
   },
